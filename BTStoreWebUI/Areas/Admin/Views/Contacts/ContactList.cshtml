@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Contact>
+@{
+    ViewData["Title"] = "Hakkımızda Listesi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-center text-success">@ViewData["Title"]</h1>
+
+<p>
+    <a asp-area="Admin" asp-controller="Contacts" asp-action="ContactCreate" class="btn btn-outline-primary btn-sm">Ekle</a>
+
+</p>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            Ad Soyad
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Message)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Name @item.Surname
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+            <td>
+                <a asp-area="Admin" asp-controller="Contacts" asp-action="ContactEdit" asp-route-id="@item.Id" class="btn btn-outline-info btn-sm">Düzenle</a>
+                <a asp-area="Admin" asp-controller="Contacts" asp-action="ContactDelete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Sil</a>
+
+            </td>
+        </tr>
+    }
+
+</table>
+

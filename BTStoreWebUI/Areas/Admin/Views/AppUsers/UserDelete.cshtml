@@ -1,0 +1,28 @@
+﻿@model AppUser
+@{
+    ViewData["Title"] = "Kullanıcı Sil";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-center text-success">@ViewData["Title"]</h1>
+
+<br />
+
+<div class="row text-center">
+    <p>
+        <b class="text-success">@Model.Name @Model.Surname</b> adlı kullanıcıyı silmek istiyor musunuz?
+    </p>
+</div>
+
+
+<div class="row text-center">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-outline-warning" /> 
+            <a asp-area="Admin" asp-controller="AppUsers" asp-action="UserList" class="btn btn-outline-danger">İptal</a>
+        </div>
+    }
+</div>

@@ -1,0 +1,70 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Kategori Ekle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-center text-success">@ViewData["Title"]</h1>
+
+<h4 class="text-center">Kategori Bilgileri</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CategoryCreate" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" type="file" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsActive)
+                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsTopMenu, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsTopMenu)
+                        @Html.ValidationMessageFor(model => model.IsTopMenu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <input type="submit" value="Ekle" class="btn btn-outline-primary btn-sm" />
+
+                <a asp-area="Admin" asp-controller="Categories" asp-action="CategoryList" class="btn btn-outline-danger btn-sm">İptal</a>
+            </div>
+        </form>
+    </div>
+</div>
+
